@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1.
+        User Profile
+    ul
+        p= "Name: " + customer.cust_first + " " + customer.cust_mid + " " + customer.cust_last
+        p= "Customer ID: " + customer._id
+        p= "Customer Email: " + customer.customer_email
+        p= "Zip: " + customer.zip
+        p= "State: " + customer.state
+        p= "City: " + customer.city
+        p= "Street: " + customer.street
+        p= "House No: " + customer.house_no
+
+    h1.
+        Transaction History
+    each order in orders
+        ul
+            - var date = new Date(order.order_datetime)
+            a(href='/orderlist/' + order._id) order: #{date}
+

@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1=title
+    h3=info.confirm
+    - var total = (info.price * info.quantity).toFixed(2);
+    - var count = info.quantity.toString();
+    p #{count} of "#{info.name}" totaling $#{total}
+
+    form#purchase-confirmation(name='post-buyproduct', method='post', action='neworder')
+        input(type='hidden', name='cid', value='#{info.user.customer_id}')
+        input(type='hidden', name='pid', value='#{info.id}')
+        input(type='hidden', name='quantity', value='#{count}')
+        input(type='hidden', name='total', value='#{total}')
+
+        button#submitbtn(name='submit') Submit

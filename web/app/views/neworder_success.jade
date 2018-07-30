@@ -1,0 +1,16 @@
+extends layout
+
+block head_addition
+
+    script.
+        setTimeout(function () {
+            if ('#{order_no}') {
+                window.location = "/orderlist/" + '#{order_no}';
+            } else {
+                window.location = "/";
+            }
+        }, 2000)
+
+block content
+    p= "added successfully"
+    br

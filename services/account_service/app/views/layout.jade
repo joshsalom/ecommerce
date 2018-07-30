@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        block head_addition
+    body
+        span(style='font-size:2.0em')
+            a(href='/') Home
+    - if (currentUserObj != undefined) {
+        p   Logged in as #{currentUserObj.customer_email} 
+            a(href='/showprofile/#{currentUserObj.customer_id}') [View Profile/Transaction History]
+            - if (currentUserObj.isAdmin) {
+                br
+                a(href='/admin') Admin Page
+            - }
+            br
+            a(href='/logout') Log Out
+    - } else {
+        p   
+            a(href='/login') Log In 
+    - }
+        block content

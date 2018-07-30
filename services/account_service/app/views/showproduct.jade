@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    h1.
+        Product Name: #{product.product_name}
+    ul
+        p= "Price: " + product.price
+        p= "Stock Count: " + product.stock_quantity
+        p= "Manufacturer: " + product.manf_name
+        p= "Supplier: " + product.supplier_name
+        p= "Category: " + product.cat_name
+        p= "Product ID: " + product._id
+
+
+    if (currentUserObj)
+        if (currentUserObj.isAdmin)
+            form#formEditProduct(name="editproduct",method="get",action="/editproduct/" + product._id)
+                button#submitbtn(type="submit") Edit
+
+        form#formAddOrder(name="buyproduct", method="get", action="/buyproduct")
+            input#productquantity(type="text", placeholder="Quantity", name="quantity")
+            input#productname(type='hidden', name='name', value=product.product_name)
+            - var pricestr = product.price.replace('$','')
+            input#productprice(type='hidden', name='price', value=pricestr)
+            input#productid(type='hidden', name='id', value=product._id)
+            br
+            button#btnSubmit(type="submit") Buy
+
+
+        

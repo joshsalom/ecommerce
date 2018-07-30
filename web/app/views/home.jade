@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1 Online Shopping
+    br
+    span
+        form#formAddOrder(name="list_products",method="get",action="/")
+            select(name="category") &nbsp &nbsp;
+                option(value="all_categories") All Categories
+                each category in uniq_cats
+                    option(value= category) #{category}
+            input(type="text", name="keyword")
+            button#btnSubmit(type="submit") Search
+    div
+        br
+        dl
+            each product in product_list
+                dt
+                    a(href= '/showproduct/' + product._id) #{product.product_name}
+
+    

@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    h1= title
+
+    - if (product != null || product != undefined) {
+    h2 Edit Product Values:
+    form#formEditProduct(name="updateproduct",method="post",action="/editproduct/#{product._id}")
+        div= "Product ID: " + product._id
+        div= "Product Name: "
+        input#inputQuantity(type="text", value="#{product.product_name}", name="product_name")
+        div= "Manufacturer Name: "
+        input#inputQuantity(type="text", value="#{product.manf_name}", name="manf_name")
+        div= "Stock Quantity: "
+        input#inputQuantity(type="text", value="#{product.stock_quantity}", name="stock_quantity")
+        div= "Supplier Name: "
+        input#inputQuantity(type="text", value="#{product.supplier_name}", name="supplier_name")
+        div= "Price: "
+        input#inputQuantity(type="text", value="#{product.price}", name="price")
+        div= "Category: "
+        input#inputQuantity(type="text", value="#{product.cat_name}", name="cat_name")
+        br
+        button#btnSubmit(type="submit") Update
+    - } else {
+    h2 Product ##{product_id} does not exist! 
+    - }
+    

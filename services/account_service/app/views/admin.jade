@@ -1,0 +1,52 @@
+extends layout
+
+block content
+    h2 New Product
+    br
+    span
+        form#new_prod(name="new_prod",method="post",action="/createproduct")
+            b Product Name: 
+            input(type="text", name="productname" required)
+            br
+            b Price: 
+            input(type="text", name="price" required) 
+            br
+            b Stock Count: 
+            input(type="text", name="stock" required)
+            br
+            b Manufacturer: 
+            input(type="text", name="manufacturer" required) 
+            br
+            b Supplier: 
+            input(type="text", name="supplier" required)
+            br
+            b Category: 
+            input(type="text", name="category" required) 
+            br
+            button#btnSubmit(type="submit") Create Product
+
+    h2 Delete Product
+    br
+    span
+        form#delete_prod(name="delete_prod", method="post", action="/deleteproduct")
+            b Product Name: 
+            input(type="text", name="productname" required)
+            br
+            b Manufacturer: 
+            input(type="text", name="manufacturer" required)
+            br
+            b (Optional) Quantity:
+            input(type="text", name="quantity" placeholder="Leave blank to delete")
+            br
+            button#btnSubmit(type="submit") Delete Product
+
+    h2 Delete Category
+    br
+    span
+        form#delete_prod(name="delete_prod", method="post", action="/deletecategory")
+            b Warning: Deletes all products in the specified category
+            br
+            b Category:
+            input(type="text", name="category" required)
+            br
+            button#btnSubmit(type="submit") Delete Category

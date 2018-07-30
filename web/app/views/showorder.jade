@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    if (currentUserObj)
+        - var oid = order._id.toString()
+        - var date = new Date(order.order_datetime)
+        - function FormatNumberLength(num, length) {
+        -     var r = "" + num;
+        -     while (r.length < length) {
+        -         r = "0" + r;
+        -     }
+        -     return r;
+        - }
+
+    h1= "Order number: " + "..." + oid.substring(oid.length - 5, oid.length)
+    ul
+        p Order Date: #{date.getFullYear()}-#{FormatNumberLength(date.getMonth()+1, 2)}-#{FormatNumberLength(date.getDate(), 2)}
+        p Order Time: #{FormatNumberLength(date.getHours(), 2)}:#{FormatNumberLength(date.getMinutes(),2)}:#{FormatNumberLength(date.getSeconds(),2)}
+        p= "Quantity: " + order.quantity
+        p= "product: "
+            a(href="/showproduct/" + order.product_id) #{order.product_id}
